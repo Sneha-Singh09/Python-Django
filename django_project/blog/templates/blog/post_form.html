@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+<!-- crispy is third party django app that makes working with form a lot easier
+it would allow us to put simple tags in our template that would style our forms in bootstrap fashion -->
+{% block content %}
+    <div class='content-section'>
+        <form method='POST'>  
+          <!-- since we didn't specify where to post that form data
+            it posted it back to the same page(route)   -->
+            {% csrf_token %}
+            <!-- csrf is added for security -->
+            <fieldset class='form-group'>
+                <legend class='border-bottom mb=4'>Blog</legend>
+                <!-- as_p: it would render our forms in paragraph tags
+                it is replaced by crispy later cause crispy does a betterjob -->
+                {{ form|crispy }}
+            </fieldset>
+            <div class='form-group'>
+               <button class='btn btn-outline-info' type='submit'>Post</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}       
